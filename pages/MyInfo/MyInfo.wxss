@@ -1,0 +1,40 @@
+/* pages/MyInfo/MyInfo.wxss */
+
+.backImage {
+  position: fixed;
+  z-index: -9999;
+  opacity: 0.1;
+  width: 100%;
+  height: 100%;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 50rpx 40rpx;
+  text-align: center;
+  
+}
+.info {
+  font-size: 24rpx;
+  color: #888;
+  margin-top: 20rpx;
+  width: 80%;
+  text-align: center;
+  white-space:normal;
+}
+
+.devname{
+  font-size: 50rpx;
+  font-style: initial;
+}
+
+.summary {
+  width: 80%;
+  margin: 30rpx auto;
+} 
+
+label{
+  font-size: 25rpx;
+}

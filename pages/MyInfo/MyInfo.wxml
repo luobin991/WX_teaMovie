@@ -1,0 +1,17 @@
+<!--pages/MyInfo/MyInfo.wxml-->
+
+<view class='container'>
+  <image src='../../images/banner/800.jpg' mode="aspectFill" class='backImage' />
+  <block>
+    <view class='meta'>
+
+      <image class="poster" src="../../images/banner/800.jpg" mode="aspectFit" />
+      <text class='devname'>{{Developer}}</text>
+      <text class='info'>754919279@qq.com </text>
+      <text class='info'>{{datainfn}} 这是一个查看电影的工具 </text>
+    </view>
+    <view class='summary'>
+      <label>电影：[汪磊](http://github.com/zce) </label>
+    </view>
+  </block>
+</view>

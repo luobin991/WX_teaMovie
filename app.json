@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/splash/splash",
+    "pages/MyInfo/MyInfo",
+    "pages/board/board",
+    "pages/item/item",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/list/list"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "LTools",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f8f9fb",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#000000",
+    "borderStyle": "white",
+    "backgroundColor": "#f8f9fb",
+    "list": [
+      {
+        "text": "榜单",
+        "pagePath": "pages/board/board",
+        "iconPath": "images/board.png",
+        "selectedIconPath": "images/board-actived.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/MyInfo/MyInfo",
+        "iconPath": "images/profile.png",
+        "selectedIconPath": "images/profile-actived.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 20000,
+    "connectSocket": 20000,
+    "uploadFile": 20000,
+    "downloadFile": 20000
+  },
+  "debug": false
+}
