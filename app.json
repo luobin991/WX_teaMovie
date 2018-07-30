@@ -6,7 +6,9 @@
     "pages/item/item",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/list/list"
+    "pages/list/list",
+    "pages/tea/list", 
+    "pages/myOrder/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -23,6 +25,12 @@
     "backgroundColor": "#f8f9fb",
     "list": [
       {
+        "text": "茶单",
+        "pagePath": "pages/tea/list",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-actived.png"
+      },
+      {
         "text": "榜单",
         "pagePath": "pages/board/board",
         "iconPath": "images/board.png",
@@ -30,7 +38,7 @@
       },
       {
         "text": "我的",
-        "pagePath": "pages/MyInfo/MyInfo",
+        "pagePath": "pages/myOrder/index",
         "iconPath": "images/profile.png",
         "selectedIconPath": "images/profile-actived.png"
       }

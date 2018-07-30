@@ -2,7 +2,7 @@ const URI = 'https://api.map.baidu.com'
 const fetch = require('/fetch')
 
 function fetchApi(type, params) {
-  return fetch(URI, type, params)
+  return fetch.DataGET(URI, type, params)
 }
 
 
@@ -15,7 +15,8 @@ function fetchApi(type, params) {
 function getCityName(latitude = 39.90403, longitude = 116.407526) {
   const params = { location: `${latitude},${longitude}`, output: 'json', ak: 'B61195334f65b9e4d02ae75d24fa2c53' }
   return fetchApi('geocoder/v2/', params)
-    .then(res => res.data.result.addressComponent.city)
+    //.then(res => res.data.result.addressComponent.city)
+    .then(res => res.data.result)
 }
 
 module.exports = { getCityName }

@@ -1,0 +1,113 @@
+/**index.wxss**/
+
+page {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+}
+
+.container .centent {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 15rpx 40rpx;
+  text-align: center;
+}
+
+.container .backImage {
+  position: fixed;
+  z-index: -9999;
+  opacity: 0.1;
+  width: 100%;
+  height: 100%;
+}
+/* 
+.container .Myhead {
+  height: 35%;
+  width: 96%;
+  text-align: center;
+} 
+
+.container .userimg {
+  margin: 20rpx 10%;
+  text-align: center;
+} */
+
+.container .userimg image {
+  width: 250rpx;
+  height: 250rpx;
+  border-radius: 50%/50%;
+  background: white;
+}
+
+/***********/
+
+.orderList {
+  width: 96%;
+  height: 750rpx;
+  margin-top: 20rpx;
+  margin-left: 2%;
+  box-shadow: 0rpx 0rpx 2rpx 1rpx #ddd;
+}
+
+.orderList .goodsList {
+  height: 100%;
+}
+
+.goodsList .goodstiem {
+  width: 100%;
+  /* height: 100rpx; */
+  /* display: flex; */
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 10rpx;
+}
+.goodstiem .row{
+  font-size:25rpx;
+  text-align: left;
+   color: #808080;
+}
+
+.goodstiem .row-goods{
+  font-size:28rpx;
+  text-align: left;
+  padding-left: 20rpx;
+}
+/* 
+.goodsList .goodstiem .date {
+  font-size: 25rpx;
+  float: right;
+  line-height: 88rpx;
+  text-align: center;
+}
+
+.goodsList .goodstiem .goodstxt {
+  height: 100%;
+  width: 40%;
+}
+
+.goodsList .goodstiem .goodstxt .title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #000;
+  white-space: nowrap;
+}
+
+.goodsList .goodstiem .goodstxt .marke {
+  font-size: 20rpx;
+  font-weight: 400;
+  color: #c4c4c4;
+  word-wrap: break-word;
+  word-break: normal;
+  flex-wrap: warp;
+  white-space: pre-wrap;
+}
+
+.goodsList .goodstiem .sumtiem {
+  float: right;
+  font-size: 30rpx;
+  line-height: 88rpx;
+  text-align: center;
+} */

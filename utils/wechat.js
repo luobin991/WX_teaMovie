@@ -22,6 +22,20 @@ function getStorage(key) {
     wx.getstorage({ type: type, success: resolve, fail: reject })
   })
 }
+
+//从本地缓存中同步获取指定 key 对应的内容。
+function getStorageSync(key) {
+  try {
+    var value = wx.getStorageSync(key)
+    if (value) {
+      //console.log(value)
+      return value;
+    }
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 function getLocation(type) {
   return new Promise((resolve, reject) => {
     wx.getLocation({
@@ -37,6 +51,7 @@ module.exports = {
   getUserInfo,
   setStorage,
   getStorage,
+  getStorageSync,
   getLocation,
   original: wx
 }

@@ -1,4 +1,3 @@
-
 /**
  * WeChat API 模块
  * @type {Object}
@@ -20,31 +19,52 @@ const douban = require('./utils/douban.js')
  */
 const baidu = require('./utils/baidu.js')
 
+/**
+ * 茶 API 模块
+ */
+const daan = require('./utils/daan.js')
 
 App({
-  data:{
-    name:'Douban Movie',
-    version:'0.1.0',
-    curremtCity:'Beijing'
+  data: {
+    name: 'Douban Movie',
+    version: '0.1.0',
+    //curremtCity:'深圳',
+    formatted_address: '深圳',
+    isAuthorized: false,
+    userInfo: {}
   },
-  wechat:wechat,
-  douban:douban,
-  baidu:baidu,
+  wechat: wechat,
+  douban: douban,
+  baidu: baidu,
+  daan: daan,
   /*
   生命周期函数--监听小程序初始化 
   当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
   */
-  onLaunch(){
-    wechat.getLocation().then(res=>{
-      const{latitude,longitude} = res
-      return baidu.getCityName(latitude,longitude)
-    }).then(name=>{
-      this.data.currentCity = name.replace('市', '')
-      console.log(`currentCity : ${this.data.currentCity}`)
+  onLaunch() {
+    console.log("app onLaunch....")
+    wechat.getUserInfo().then(res => {
+      this.data.userInfo = res.userInfo;
+    }).catch(err => {
+      console.error(err)
+    })
+
+    wechat.getLocation().then(res => {
+      const {
+        latitude,
+        longitude
+      } = res
+      return baidu.getCityName(latitude, longitude)
+    }).then(name => {
+      //this.data.currentCity = name.replace('市', '')
+      this.data.formatted_address = name.formatted_address;
+      //console.log(`currentCity : ${this.data.currentCity}`)
     }).catch(err => {
       this.data.currentCity = '北京'
       console.error(err)
     })
+
+
   }
 })
 

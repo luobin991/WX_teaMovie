@@ -1,0 +1,116 @@
+<!--pages/list/list.wxml-->
+<view class='slide' wx:if="{{isShowbanner}}">
+  <swiper indicator-dots='true' autoplay='true' interval="5000" duration='1000'>
+    <swiper-item wx:for="{{banners}}" wx:key="id">
+      <image src="{{item}}"></image>
+    </swiper-item>
+  </swiper>
+</view>
+
+<view class='container' style='height:{{containerHeight}}%;'>
+  <view class="categroy-left">
+    <view wx:for="{{details}}" wx:key="index" data-id="tea{{item.id}}" data-index="{{index}}" bindtap='switchTab' class="cate-list {{curIndex === index?'on':''}}">{{item.lableName}}
+    </view>
+  </view>
+
+  <scroll-view class='categroy-right' scroll-y='false' scroll-into-view="{{toView}}" scroll-with-animation="true" bindscroll="toCateGroyLeft">
+    <block wx:for="{{details}}" wx:for-index wx:key="id">
+      <view id="tea{{item.id}}" class="cate-box" data-index="{{index}}">
+        <view class="cate-title">
+          <text> {{item.lableName}}</text>
+        </view>
+        <view class="product">
+          <view class="product-list" wx:for="{{item.goods}}" wx:for-item="val" wx:for-index="itemIndex" wx:key="itemIndex">
+            <image src="{{val.img}}"></image>
+            <view class="classname">
+              <p class="title strong">{{val.GoodsName}}</p>
+              <p>{{val.GoodsInfo}}</p>
+              <span class="money strong">￥ {{val.Price}}</span>
+
+              <view class='cart-count-box' wx:if="{{val.lbs.length==0}}">
+                <view data-categroy="{{index}}" data-index="{{itemIndex}}" class='cart-count-down' bindtap='rmNum' wx:if='{{val.num >0}}'>-</view>
+                <view class='cart-count-num' wx:if='{{val.num >0}}'>{{val.num}}</view>
+                <view data-categroy="{{index}}" data-index="{{itemIndex}}" class='cart-count-add' bindtap='addNum'>+</view>
+              </view>
+              <view class='cart-count-box' wx:else="{{val.lbs.length>0}}">
+                <view class='cart-count-selectlb' data-categroy="{{index}}" data-index="{{itemIndex}}" bindtap='selectLabel'>选规格</view>
+                <view class='cart-count-red' wx:if="{{val.num>0}}">{{val.num}}</view>
+              </view>
+
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+
+
+</view>
+
+<!--隐藏区域  -->
+<view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal'></view>
+<!-- 订单列表 -->
+<view class='shoppinglis' wx:if="{{isShowShoppingCart}}">
+  <view class='emptyshoping'>
+    <view class='emptyshopingbtn' bindtap='emptyshopingbtn'>清空购物车</view>
+  </view>
+  <scroll-view class='goodsList' scroll-y='false' scroll-with-animation="true">
+
+    <block wx:for="{{orders.list}}" wx:for-item="order" wx:key="order.index">
+      <view class='goodstiem'>
+        <view class='goodstxt'>
+          <view class='title' style='margin-top:20rpx;' wx:if="{{order.GoodsInfo==''}}">{{order.GoodsName}}</view>
+          <view class='title' wx:else="{{order.GoodsInfo!=''}}">{{order.GoodsName}}</view>
+          <view class='marke'>{{order.GoodsInfo}}</view>
+        </view>
+        <view class='sumtiem'>￥ {{order.SumPrice}}</view>
+        <view class='cart-count-box'>
+          <view class='cart-count-down' data-categroy="{{order.details}}" data-index="{{order.rightIndex}}" 
+                data-info="{{order.GoodsInfo}}" bindtap='rmNum'>-</view>
+                
+          <view class='cart-count-num'>{{order.num}}</view>
+
+          <view class='cart-count-add'  data-categroy="{{order.details}}" data-index="{{order.rightIndex}}"
+                data-info="{{order.GoodsInfo}}" bindtap='addNum'>+</view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+<!-- 购物车组件 -->
+<view class='choose' wx:if="{{isShopping}}" animation='{{animationData}}'>
+  <view class='imgbox' bindtap='shoppinglist'>
+    <image src='../../images/cart2.png'></image>
+    <view class='shoppingcart'>购物车</view>
+  </view>
+  <view class='submitbnt' bindtap='SettlementPrice'>结算</view>
+  <view class='labeltxt'>合计：￥ {{orders.sumPrice}}</view>
+</view>
+
+<!-- 待选规格 -->
+<view wx:if="{{flag}}">
+  <view class='selectLayer' bindtap='hidSelLayer'></view>
+  <view class='selectLableBox'>
+    <view class='s_title'>
+      <view class='s_goodsName'>{{selectGood.entity.GoodsName}}</view>
+      <!-- <view class='s_claer'>X</view>  -->
+    </view>
+    <scroll-view scroll-y='false' class='s_scrollview'>
+      <view wx:for="{{selectGood.entity.lbs}}" wx:for-item="lable" wx:for-index="lbIndex" class='s_scrollbox' wx:key='lable.id'>
+        <view class='s_lablename'>{{lable.lableName}}</view>
+        <view class="s_lbdetails">
+          <block wx:for="{{lable.lbDetails}}" wx:for-item="detils" wx:key='detils.id'>
+            <view class="s_lbdetil {{selectGood.selectLable[lbIndex] === detils.lable?'on':''}}" data-lbIndex='{{lbIndex}}' data-lable='{{detils.lable}}' bindtap='LabelTab'>{{detils.lable}}</view>
+          </block>
+        </view>
+      </view>
+    </scroll-view>
+    <view class='s_goodsShopp'>
+      <view class='s_goodsMInfo'>
+        <view class='s_goodsMoney'>￥{{selectGood.entity.Price}}</view>
+        <view class='s_goodsinfo'>{{selectGood.selectLable}}</view>
+      </view>
+      <view class='s_goodsCar' bindtap='addOrder'>加入购物车</view>
+    </view>
+  </view>
+</view>

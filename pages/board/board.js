@@ -39,7 +39,7 @@ Page({
   },
   onShareAppMessage() {
     return {
-      title: "LTools 这是一个小工具箱，快来看看里面有什么惊喜吧",
+      title: "世事一场大梦，人生几度秋凉？",
       path: "pages/splash/splash",
       imageUrl: "../images/banner/800.jpg"
     }

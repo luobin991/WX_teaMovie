@@ -7,15 +7,54 @@
  * @return {Promise}       包含抓取任务的Promise
  */
 
-module.exports = function(api,path,params){
-  return new Promise((resolve,reject) => {
+// module.exports = function(api,path,params){
+//   return new Promise((resolve,reject) => {
+//     wx.request({
+//       url: `${api}/${path}`,
+//       data:Object.assign({},params),
+//       header:{'Content-Type':'json'},
+//       success:resolve,
+//       fail:reject
+//     })
+//   })
+// }
+
+
+
+
+//GET
+function DataGET(api, path, params) {
+  return new Promise((resolve, reject) => {
     wx.request({
       url: `${api}/${path}`,
-      data:Object.assign({},params),
-      header:{'Content-Type':'json'},
-      success:resolve,
-      fail:reject
+      data: params,//Object.assign({}, params),
+      header: {
+        'content-Type': 'json'
+      },
+      success: resolve,
+      fail: reject
     })
   })
+}
 
+function DataPOST(api, path, params) {
+  return new Promise((resolve, reject) => {
+    console.log(`${api}/${path}`)
+    console.log(params);
+    wx.request({
+      url: `${api}/${path}`,
+      method: 'POST',
+      data: params,//Object.assign({}, params),
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'Accept': 'application/json'
+      },
+      success: resolve,
+      fail: reject
+    })
+  })
+}
+
+module.exports = {
+  DataGET, DataPOST
 }

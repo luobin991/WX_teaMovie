@@ -13,8 +13,7 @@
   align-items: center;
   flex-direction: column;
   padding: 50rpx 40rpx;
-  text-align: center;
-  
+  text-align: center; 
 }
 .info {
   font-size: 24rpx;

@@ -11,7 +11,7 @@ const fetch = require('./fetch')
  * @return {Promise}       包含抓取任务的Promise
  */
 function fetchApi(type, params) {
-  return fetch(URI, type, params)
+  return fetch.DataGET(URI, type, params)
 }
 
 

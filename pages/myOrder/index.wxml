@@ -1,0 +1,39 @@
+<!--index.wxml-->
+
+
+<view class="container">
+  <image src='../../images/banner/800.jpg' mode="aspectFill" class='backImage' />
+  <block>
+    <view class='centent'>
+      <view class='Myhead'>
+        <view class='userimg'>
+          <image src='{{userInfo.avatarUrl}}'></image>
+        </view>
+        <view class='userName'>{{userInfo.nickName}} - {{userInfo.city}}</view>
+      </view>
+      <view class="orderList">
+        <scroll-view class='goodsList' scroll-y='false' scroll-with-animation="true">
+          <view wx:if="{{result.statusCode!=200}}">
+            <view>请求数据失败</view>
+          </view>
+          <view wx:elif="{{result.data.length==0}}">
+            <view>无订单数据</view>
+          </view>
+          <view wx:else>
+            <view class='goodstiem' wx:for="{{result.data}}" wx:key="id">
+              <view class='row'>订单号： {{item.orderNum}}</view>
+              <view class='row'>交易单号： {{item.tradingNum}}</view>
+              <view class='row'>商户单号： {{item.merchantCode}}</view>
+              <view class='row'>订单时间：{{item.createTimeStr}}</view>
+              <view class='row'>共： {{item.orderNumber}}件  {{item.orderSumPrice}}元 {{item.orderStatus}}</view>
+              <view wx:for="{{item.list}}" wx:for-item="goods" wx:key="id">
+                <view class='row-goods'> {{goods.GoodsName}} {{goods.num}} 件 {{goods.Price}}元</view>
+              </view>
+            </view>
+
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </block>
+</view>

@@ -8,7 +8,7 @@ Page({
    */
   data: {
     movies: [],
-    loading: true
+    loading: true,
   },
 
   getCache() {
@@ -26,21 +26,46 @@ Page({
   handleStart() {
     // TODO: 访问历史的问题
     wx.switchTab({
-      url: '../board/board'
+      url: '../tea/list'
     })
   },
-   /**
-   * 生命周期函数--监听页面加载
-   */
+
+  getUserAuthorized() {
+    
+    console.log("splash getUserAuthorized runing...")
+    if (app.data.userInfo.nickName == undefined) {
+      console.log("splash getUserAuthorized userInfo's nickName is undefined");
+      app.wechat.getUserInfo().then(res => {
+        app.data.userInfo = res.userInfo;
+      }).catch(err => {
+        console.error(err)
+      })
+    }else{
+      wx.switchTab({
+        url: '../tea/list'
+      })
+    }
+
+   
+  },
+  /**
+  * 生命周期函数--监听页面加载
+  */
   onLoad() {
+    
     console.log('splash runing...');
-    this.getCache().then(cache => { 
+
+    if (app.data.userInfo.nickName == undefined) {
+      console.log("splash onLoad userInfo's nickName is undefined");
+    }
+
+    this.getCache().then(cache => {
       if (cache) {
         return this.setData({ movies: cache.movies, loading: false })
       }
-      app.douban.find('coming_soon',1,3).then(d=>{
+      app.douban.find('coming_soon', 1, 3).then(d => {
 
-        this.setData({movies:d.subjects,loading:false})
+        this.setData({ movies: d.subjects, loading: false })
 
         return app.wechat.setStorage('last_splash_data', {
           movies: d.subjects,
@@ -48,5 +73,9 @@ Page({
         })
       })
     }).then(() => console.log("storage last splash data"))
-  }
+  },
+
+  /*生命周期函数--监听页面初次渲染完成*/
+  onShow() {
+  },
 })
